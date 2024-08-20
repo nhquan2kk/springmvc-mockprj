@@ -101,7 +101,7 @@
 												            <td>${user.role.name}</td>
 												            <td>
 												            	<form id="deleteForm" method="post"
-																action="${pageContext.request.contextPath}/user/deluser">
+																action="${pageContext.request.contextPath}/users/deluser">
 																<input type="hidden" name="id"
 																	value="${user.id }" />
 																<button type="button" class="btn " data-toggle="modal"

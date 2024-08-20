@@ -1,5 +1,6 @@
 package com.springmvc.mock.controllers;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List; 
 
@@ -43,18 +44,31 @@ public class AdminUserController {
 	public String getCreateForm(Model model) {
 	    List<Role> roles = adminRoleService.getAllRole();
 	    model.addAttribute("roles", roles);  
-	    model.addAttribute("user", new User());  
+	    model.addAttribute("user", new User());
 	    return "adminCreateUser";  
 	}
 	
 	@PostMapping("/save")
-	public String saveUser(@ModelAttribute User user, 
-	                       @RequestParam("avatar") MultipartFile file) {
-		if(file.getOriginalFilename().isEmpty()) {
-			System.out.println("file EMPTY");
-		}
+	public String saveUser(
+            @RequestParam("username") String username,
+            @RequestParam("password") String password,
+            @RequestParam("first_name") String firstName,
+            @RequestParam("last_name") String lastName,
+            @RequestParam("address") String address,
+            @RequestParam("telephone") String telephone,
+            @RequestParam("avatar") MultipartFile file,
+            @RequestParam("role.id") Long roleId) {
 		try {
-			adminUserService.saveUser(user, file);
+			User user = new User();
+		    user.setUsername(username);
+            user.setPassword(password);
+            user.setFirst_name(firstName);
+            user.setLast_name(lastName);
+            user.setAddress(address);
+            user.setTelephone(telephone);
+            user.setRole(adminRoleService.getRoleById(roleId));
+
+		 	  adminUserService.saveUser(user, file);
 	    }catch(IOException e){
 	    	e.printStackTrace();
 	    }
@@ -83,7 +97,6 @@ public class AdminUserController {
             user.setAddress(address);
             user.setTelephone(telephone);
             user.setRole(adminRoleService.getRoleById(roleId));
-            
         
             adminUserService.saveUser(user, file);
 		}catch(IOException e) {

@@ -18,10 +18,10 @@ public class Seat {
 	private Long id;
 	
 	@Column(name  = "rownumber")
-	private Long rownumber;
+	private int rownumber;
 	
 	@Column(name = "columnnumber")
-	private Long columnnumber;
+	private int columnnumber;
 	
 	@ManyToOne
 	@JoinColumn(name = "screening_room_id")
@@ -35,19 +35,19 @@ public class Seat {
 		this.id = id;
 	}
 
-	public Long getRow_number() {
+	public int getRow_number() {
 		return rownumber;
 	}
 
-	public void setRow_number(Long row_number) {
+	public void setRow_number(int row_number) {
 		this.rownumber = row_number;
 	}
 
-	public Long getColumn_number() {
+	public int getColumn_number() {
 		return columnnumber;
 	}
 
-	public void setColumn_number(Long column_number) {
+	public void setColumn_number(int column_number) {
 		this.columnnumber = column_number;
 	}
 

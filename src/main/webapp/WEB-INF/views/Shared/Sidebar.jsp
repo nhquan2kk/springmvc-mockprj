@@ -25,15 +25,15 @@
             </div>
           </li> -->
           <li class="nav-item">
-           <a class="nav-link" href="AdminExaminationController?pageId=1">
+           <a class="nav-link" href="${pageContext.request.contextPath}/screeningrooms">
             <i class="mdi mdi-trophy iconic-action"></i>
-              <span class="menu-title">Manage Movie</span>
+              <span class="menu-title">Manage Screening Room</span>
             </a>
           </li>
           <li class="nav-item">
-           <a class="nav-link" href="AdminVocabularyController?pageId=1">
+           <a class="nav-link" href="${pageContext.request.contextPath}/seats">
              <i class="mdi mdi-alphabetical iconic-action"></i>
-              <span class="menu-title">Manage Room</span>
+              <span class="menu-title">Manage Seats</span>
             </a>
           </li>
            <li class="nav-item">
@@ -49,9 +49,15 @@
             </a>
           </li>
            <li class="nav-item">
-           <a class="nav-link" href="AdminAddResourceController">
+           <a class="nav-link" href="${pageContext.request.contextPath}/role/listrole">
              <i class="mdi mdi-upload iconic-action"></i>
-              <span class="menu-title">Upload Resources</span>
+              <span class="menu-title">Manager Role</span>
+            </a>
+          </li>
+          <li class="nav-item">
+           <a class="nav-link" href="${pageContext.request.contextPath}/role/listrole">
+             <i class="mdi mdi-upload iconic-action"></i>
+              <span class="menu-title">Manager Ticket</span>
             </a>
           </li>
          

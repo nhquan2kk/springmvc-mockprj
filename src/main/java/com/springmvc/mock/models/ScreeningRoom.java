@@ -16,49 +16,69 @@ import jakarta.persistence.Table;
 public class ScreeningRoom {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
-	
-	@Column(name = "room_name")
-	private String room_name;
-	
-	@OneToMany(mappedBy="screeningroom", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Seat> seat;
-	
-	@OneToMany(mappedBy = "screeningroom", cascade = CascadeType.ALL, orphanRemoval = true)
-	private List<Showtime> showtime;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-	public Long getId() {
-		return id;
-	}
+    @Column(name = "room_name")
+    private String room_name;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @Column(name = "total_seat")
+    private int totalSeat;
 
-	public String getRoom_name() {
-		return room_name;
-	}
+    @OneToMany(mappedBy="screeningroom", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Seat> seat;
 
-	public void setRoom_name(String room_name) {
-		this.room_name = room_name;
-	}
+    @OneToMany(mappedBy = "screeningroom", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Showtime> showtime;
 
-	public List<Seat> getSeat() {
-		return seat;
-	}
+    // Getters và Setters
+    public Long getId() {
+        return id;
+    }
 
-	public void setSeat(List<Seat> seat) {
-		this.seat = seat;
-	}
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-	public List<Showtime> getShowtime() {
-		return showtime;
-	}
+    public String getRoom_name() {
+        return room_name;
+    }
 
-	public void setShowtime(List<Showtime> showtime) {
-		this.showtime = showtime;
-	}
-	
-	
+    public void setRoom_name(String room_name) {
+        this.room_name = room_name;
+    }
+
+    public List<Seat> getSeat() {
+        return seat;
+    }
+
+    public void setSeat(List<Seat> seat) {
+        this.seat = seat;
+    }
+
+    public List<Showtime> getShowtime() {
+        return showtime;
+    }
+
+    public void setShowtime(List<Showtime> showtime) {
+        this.showtime = showtime;
+    }
+
+    public int getTotalSeat() {
+        return totalSeat;
+    }
+
+    public void setTotalSeat(int totalSeat) {
+        this.totalSeat = totalSeat;
+    }
+
+    public void calculateTotalSeat() {
+        if (seat != null) {
+            this.totalSeat = seat.stream()
+                .mapToInt(s -> s.getRow_number() * s.getColumn_number())
+                .sum();
+        } else {
+            this.totalSeat = 0;
+        }
+    }
 }
